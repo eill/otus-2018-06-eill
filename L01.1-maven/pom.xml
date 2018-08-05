@@ -58,6 +58,31 @@
                     </archive>
                 </configuration>
             </plugin>
+            <plugin>
+                <groupId>com.github.dingxin</groupId>
+                <artifactId>proguard-maven-plugin</artifactId>
+                <version>1.0.3</version>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>proguard</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <libs>
+                        <lib>${java.home}/jmods/</lib>
+                    </libs>
+                    <options>
+                        <option>-dontnote</option>
+                        <!-- useful for debugging purpose, keeps only minification <option>-dontobfuscate</option> -->
+                        <option>-injars ${project.build.directory}/${project.artifactId}-${project.version}-jar-with-dependencies.jar</option>
+                        <option>-outjars ${project.build.directory}/${project.artifactId}-${project.version}-jar-with-dependencies-shrinked.jar</option>
+                        <option>-keepclasseswithmembers public class * { public static void main(java.lang.String[]); }</option>
+                    </options>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
 
