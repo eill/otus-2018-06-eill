@@ -9,7 +9,8 @@ public class Main {
     public static void main(String args[]) {
         Scanner sc = new Scanner(System.in);
         ArrayList<String> strlist = new ArrayList<String>();
-        while (sc.hasNext()) {
+        System.out.println("reads 5 lines and concatenates into one new line");
+        for (int i=0; i<5; i++) {
             strlist.add(sc.next());
         }
         Joiner joiner = Joiner.on(" ").skipNulls();
